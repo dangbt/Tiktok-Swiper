@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import { PluginAPI } from "tailwindcss/types/config";
+const plugin = require("tailwindcss/plugin");
 
 const config: Config = {
   content: [
@@ -15,6 +17,17 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }: PluginAPI) {
+      addUtilities({
+        ".text-scroll": {
+          animation: "text-scroll 15s linear infinite",
+        },
+        ".rotate-animation": {
+          animation: " rotate-animation 6s linear infinite;",
+        },
+      });
+    }),
+  ],
 };
 export default config;
